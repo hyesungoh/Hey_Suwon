@@ -1,1 +1,13 @@
-$bg-color : #989898;
+$bg-color: #989898;
+
+.app {
+    .bg {
+        width: 100vw;
+        height: 100vh;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-size: cover;
+        background-image: url("./media/heysuwon_bg1.jpg");
+    }
+}
