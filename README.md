@@ -47,3 +47,12 @@ s;
     }
 },
 ```
+
+## Issue
+
+#### npm install
+```terminal
+// 둘 다
+npm i react-router-dom
+npm i --save @types/react-router-dom
+```
