@@ -5,5 +5,46 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+
     padding: 0px 30px;
+
+    opacity: 0;
+    transition: opacity 1000ms;
+}
+
+.weather-showing {
+    opacity: 1;
+}
+
+.weather__card {
+    $weather_card_height: 90px;
+
+    display: flex;
+    backdrop-filter: blur(5px);
+
+    .weather__icon {
+        width: 80px;
+        height: $weather_card_height;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .weather__info {
+        width: 120px;
+        height: $weather_card_height;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .temp {
+            font-size: 18px;
+        }
+        .location {
+            font-size: 12px;
+        }
+    }
 }
