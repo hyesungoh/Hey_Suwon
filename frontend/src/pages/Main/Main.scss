@@ -1,0 +1,35 @@
+@import "../../Variables";
+
+.main {
+    width: 100vw;
+    height: 70vh;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding: $top_bottom_padding;
+
+    .main__logo {
+        width: 500px;
+        display: grid;
+        grid-template-rows: 100px 100px;
+        text-shadow: $base_shadow_setting;
+
+        .logo__hey {
+            font-size: 25px;
+            display: flex;
+            align-items: flex-start;
+
+            transform: translateY(20px) translateX(10px);
+        }
+
+        .logo__suwon {
+            font-size: 120px;
+            display: flex;
+            align-items: flex-start;
+
+            transform: translateY(-80px);
+        }
+    }
+}

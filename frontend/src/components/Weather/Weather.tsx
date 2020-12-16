@@ -12,16 +12,22 @@ const getWeather = async () => {
 };
 
 const WeatherCard = (props: any) => {
-    const {temp, icon} = props;
-    return <div className="weather__card">
-        <div className="weather__icon">
-            <img src={`http://openweathermap.org/img/wn/${icon}@2x.png`} alt="Weather Icon" />
+    const { temp, icon } = props;
+    return (
+        <div className="weather__card">
+            <div className="weather__icon">
+                <img
+                    src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
+                    alt="Weather Icon"
+                />
+            </div>
+            <div className="weatehr__border"></div>
+            <div className="weather__info">
+                <span className="temp">{temp}°C</span>
+                <span className="location">KR, Suwon</span>
+            </div>
         </div>
-        <div className="weather__info">
-            <span className="temp">{temp}°C</span>
-            <span className="location">KR, Suwon</span>
-        </div>
-    </div>;
+    );
 };
 
 const Weather = () => {
@@ -38,7 +44,10 @@ const Weather = () => {
     } else {
         return (
             <div className={"weather weather-showing"}>
-                <WeatherCard temp={weather.main.temp} icon={weather.weather[0].icon} />
+                <WeatherCard
+                    temp={weather.main.temp}
+                    icon={weather.weather[0].icon}
+                />
             </div>
         );
     }

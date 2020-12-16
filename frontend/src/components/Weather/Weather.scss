@@ -1,12 +1,13 @@
+@import "../../Variables";
+
 .weather {
     width: 100vw;
-    height: 100px;
+    height: 110px;
 
     display: flex;
     justify-content: flex-end;
     align-items: center;
-
-    padding: 0px 30px;
+    padding: $top_bottom_padding;
 
     opacity: 0;
     transition: opacity 1000ms;
@@ -20,7 +21,9 @@
     $weather_card_height: 90px;
 
     display: flex;
-    backdrop-filter: blur(5px);
+    align-items: center;
+    // backdrop-filter: blur(5px);
+    // box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 
     .weather__icon {
         width: 80px;
@@ -31,6 +34,15 @@
         align-items: center;
     }
 
+    .weatehr__border {
+        position: relative;
+        width: 2px;
+        height: 60px;
+        border-radius: 12px;
+        background-color: $base_white_color;
+        box-shadow: $base_shadow_setting;
+    }
+
     .weather__info {
         width: 120px;
         height: $weather_card_height;
@@ -39,7 +51,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-
+        text-shadow: $base_shadow_setting;
         .temp {
             font-size: 18px;
         }

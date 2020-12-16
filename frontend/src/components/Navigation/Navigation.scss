@@ -1,3 +1,5 @@
+@import "../../Variables";
+
 .nav {
     width: 100vw;
     height: 100px;
@@ -5,13 +7,18 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0px 30px;
+    padding: $top_bottom_padding;
 
     .nav__logo {
+        a {
+            all: unset;
+        }
         h1 {
             all: unset;
-            font-size: 21px;
+            font-size: 22px;
             font-weight: 500;
+            cursor: pointer;
+            text-shadow: $base_shadow_setting;
         }
     }
 }
@@ -20,9 +27,9 @@
     a {
         all: unset;
         cursor: pointer;
-        margin: 0px 30px;
-        font-size: 16px;
+        margin-left: 60px;
+        font-size: 18px;
         font-weight: 500;
-        color: black;
+        text-shadow: $base_shadow_setting;
     }
 }
