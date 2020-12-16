@@ -1,0 +1,28 @@
+.nav {
+    width: 100vw;
+    height: 100px;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 30px;
+
+    .nav__logo {
+        h1 {
+            all: unset;
+            font-size: 21px;
+            font-weight: 500;
+        }
+    }
+}
+
+.nav__router {
+    a {
+        all: unset;
+        cursor: pointer;
+        margin: 0px 30px;
+        font-size: 16px;
+        font-weight: 500;
+        color: black;
+    }
+}

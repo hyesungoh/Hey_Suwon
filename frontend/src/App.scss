@@ -1,6 +1,19 @@
-$bg-color: #989898;
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500;700&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans KR', sans-serif;
+}
 
 .app {
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
     .bg {
         width: 100vw;
         height: 100vh;
@@ -11,4 +24,14 @@ $bg-color: #989898;
         background-image: url("./media/heysuwon_bg1.jpg");
         z-index: -1;
     }
+}
+
+.content {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
 }

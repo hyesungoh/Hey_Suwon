@@ -1,8 +1,10 @@
 import React from "react";
 
+import "./Weather.scss";
+
 const Weather = () => {
     return (
-        <div>
+        <div className="weather">
             <h1>hello im weather</h1>
         </div>
     );
@@ -10,3 +12,4 @@ const Weather = () => {
 
 
 export default Weather;
+
