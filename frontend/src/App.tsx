@@ -10,7 +10,7 @@ import "./App.scss";
 
 const Router = withRouter(({ location }) => (
     <TransitionGroup className="content">
-        <CSSTransition key={location.key} classNames="slide" timeout={3000}>
+        <CSSTransition key={location.key} classNames="slide" timeout={0}>
                 <Switch location={location}>
                     <Route path="/" exact={true} component={Main} />
                     <Route path="/tour" />

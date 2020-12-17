@@ -26,10 +26,43 @@
 .nav__router {
     a {
         all: unset;
+        position: relative;
         cursor: pointer;
         margin-left: 60px;
+        padding: 0px 5px;
         font-size: 18px;
         font-weight: 500;
         text-shadow: $base_shadow_setting;
+
+        span {
+            position: absolute;
+            display: block;
+            bottom: -4px;
+            left: 0;
+
+            width: 100%;
+            height: 2px;
+            border-radius: 12px;
+            background-color: $base_white_color;
+            box-shadow: $base_shadow_setting;
+
+            transform: scaleX(0);
+            transform-origin: left;
+
+            transition: transform 0.5s ease-in-out;
+        }
+    }
+
+    a:hover {
+        span {
+            transform: scaleX(1);
+        }
+    }
+}
+
+
+.link__active {
+    span {
+        transform: scaleX(1) !important;
     }
 }

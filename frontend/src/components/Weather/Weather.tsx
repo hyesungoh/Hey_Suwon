@@ -11,7 +11,12 @@ const getWeather = async () => {
     return response;
 };
 
-const WeatherCard = (props: any) => {
+interface WeatherProps {
+    temp: number;
+    icon: string;
+}
+
+const WeatherCard = (props: WeatherProps) => {
     const { temp, icon } = props;
     return (
         <div className="weather__card">
