@@ -1,0 +1,28 @@
+.guide {
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    .guide__slidebar {
+        width: 28vw;
+        height: 100vh;
+        background-color: rgba(145, 189, 217, 0.5);
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    .guide__card {
+        width: 72vw;
+        height: 100vh;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

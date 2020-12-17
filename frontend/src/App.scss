@@ -44,6 +44,8 @@
     align-items: center;
 }
 
+// router exit animation
+
 .fade-enter,
 .fade-exit {
     transition: opacity 1200ms ease-out;
@@ -56,4 +58,32 @@
 
 .fade-exit-active {
     opacity: 0;
+}
+
+// router enter animation
+.slide-left-enter {
+    transition: transform 1200ms ease-out, opacity 1200ms linear;
+}
+
+.slide-left-enter {
+    transform: translateX(100%);
+    opacity: 0;
+}
+
+.slide-left-enter.slide-left-enter-active {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.slide-right-enter,
+.slide-right-exit {
+    transition: transform 1200ms ease-out, opacity 1200ms linear;
+}
+.slide-right-enter {
+    transform: translateX(-100%);
+    opacity: 0;
+}
+.slide-right-enter.slide-right-enter-active {
+    transform: translateX(0);
+    opacity: 1;
 }
