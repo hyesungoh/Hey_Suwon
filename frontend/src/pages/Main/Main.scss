@@ -33,3 +33,31 @@
         }
     }
 }
+
+.slide-left-enter,
+.slide-left-exit {
+    transition: transform 1200ms ease-out, opacity 1200ms linear;
+}
+
+.slide-left-enter {
+    transform: translateX(100%);
+    opacity: 0;
+}
+
+.slide-left-enter.slide-left-enter-active {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.slide-right-enter,
+.slide-right-exit {
+    transition: transform 1200ms ease-out, opacity 1200ms linear;
+}
+.slide-right-enter {
+    transform: translateX(-100%);
+    opacity: 0;
+}
+.slide-right-enter.slide-right-enter-active {
+    transform: translateX(0);
+    opacity: 1;
+}

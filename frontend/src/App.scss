@@ -43,3 +43,17 @@
     justify-content: flex-start;
     align-items: center;
 }
+
+.fade-enter,
+.fade-exit {
+    transition: opacity 1200ms ease-out;
+}
+
+.fade-exit {
+    opacity: 1;
+    position: absolute;
+}
+
+.fade-exit-active {
+    opacity: 0;
+}

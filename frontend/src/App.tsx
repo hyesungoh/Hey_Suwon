@@ -10,14 +10,14 @@ import "./App.scss";
 
 const Router = withRouter(({ location }) => (
     <TransitionGroup className="content">
-        <CSSTransition key={location.key} classNames="slide" timeout={0}>
-                <Switch location={location}>
-                    <Route path="/" exact={true} component={Main} />
-                    <Route path="/tour" />
-                    <Route path="/hotel" />
-                    <Route path="/restaurant" />
-                    <Route path="/cafe" />
-                </Switch>
+        <CSSTransition key={location.key} classNames="fade" timeout={1200}>
+            <Switch location={location}>
+                <Route path="/" exact={true} component={Main} />
+                <Route path="/tour" />
+                <Route path="/hotel" />
+                <Route path="/restaurant" />
+                <Route path="/cafe" />
+            </Switch>
         </CSSTransition>
     </TransitionGroup>
 ));
