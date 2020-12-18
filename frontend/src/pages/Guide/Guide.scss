@@ -5,16 +5,30 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-
     .guide__slidebar {
-        width: 28vw;
+        width: 35vw;
         height: 100vh;
-        background-color: rgba(145, 189, 217, 0.5);
 
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: flex-start;
+
+        position: relative;
+        overflow-y: scroll;
+        overflow-x: visible;
+
+        .slidebar__base {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 25vw;
+            height: 150vh;
+            background-color: rgba(145, 189, 217, 0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
     }
 
     .guide__card {
@@ -24,5 +38,34 @@
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+}
+
+.slide__element {
+    position: relative;
+    width: 30vw;
+    height: 100px;
+    padding: 0px 20px;
+
+    .slide__element__name {
+        all: unset;
+        position: absolute;
+        top: 50%;
+        left: 30px;
+        transform: translateY(-50%);
+        width: 30vw;
+        font-size: 20px;
+    }
+}
+
+.silde__select {
+    background: linear-gradient(
+        to right,
+        rgba(122, 159, 191, 1),
+        rgba(122, 159, 191, 0)
+    );
+
+    .slide__element__name {
+        font-size: 24px;
     }
 }

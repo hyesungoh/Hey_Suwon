@@ -1,7 +1,8 @@
-import React, { useState, useEffect, Component } from "react";
-import { CSSTransition } from "react-transition-group";
+import React, { useState, useEffect, useCallback } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+import { CSSTransition } from "react-transition-group";
+import { useSpring, animated, interpolate } from "react-spring";
 
 import GuideCard from "../../components/GuideCard/GuideCard";
 import * as config from "../../config";
@@ -23,7 +24,13 @@ interface GuideSlideProps {
 
 const SlideElement = (props: GuideSlideProps) => {
     const { name } = props;
-    return <h1>{name}</h1>;
+    return (
+        <div className="slide__element">
+            <div className="slide__element__name">
+                <h3>{name}</h3>
+            </div>
+        </div>
+    );
 };
 
 const Guide = () => {
@@ -31,6 +38,11 @@ const Guide = () => {
     const [data, setData] = useState<any>(null);
     const fetchUrl: string = useCurrentUrlToFetchUrl();
 
+    const [scrollValue, setScrollValue]: any = useSpring(() => {
+        return {xy: [0, 0]}
+    });
+    const onScroll = useCallback(e => setScrollValue({ st: e.target.scrollTop / 30 }), [])
+    
     useEffect(() => {
         setState(true);
         fetchData(fetchUrl).then((data) => {
@@ -50,7 +62,9 @@ const Guide = () => {
         <div className="guide">
             <CSSTransition in={state} classNames="slide-right" timeout={1500}>
                 <div className="guide__slidebar">
-                    {checkDataForMapping(SlideElement)}
+                    <div className="slidebar__base">
+                        {checkDataForMapping(SlideElement)}
+                    </div>
                 </div>
             </CSSTransition>
 
