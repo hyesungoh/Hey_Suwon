@@ -7,6 +7,7 @@ import GuideCard from "../../components/GuideCard/GuideCard";
 import * as config from "../../config";
 
 import "./Guide.scss";
+import { getScrollPosition } from "../../components/GuideCard/GuideCard";
 
 // 현재 url path를 이용하여 데이터를 호출할 api 주소를 반환
 const useCurrentUrlToFetchUrl = () => {
@@ -60,6 +61,7 @@ const Guide = () => {
         const currentScroll: number = e.target.scrollTop;
         const currentElement: number = Math.floor(currentScroll / 100);
         checkCurrentElement(currentElement);
+        getScrollPosition(currentElement);
     }, []);
 
     // 자식 객체들에게 클래스를 부여, 삭제
@@ -67,6 +69,7 @@ const Guide = () => {
         // 수정할 것 : 현재 객체 수를 파악하여 사용하도록
         // 수정할 것 : slidebar__base의 높이또한 객체 수에 따라 수정되도록
         const ELEMENT_SIZE: number = 5;
+
         // 현재 선택된 객체에게 클래스 부여
         scrollElement.current?.children[index].classList.add("silde__select");
         // 선택되지 않은 다른 객체들은 클래스 삭제
@@ -81,7 +84,6 @@ const Guide = () => {
         // 원래 선택된 객체를 사용하여 할 수도 있지 않을까?
     };
 
-
     // 데이터의 호출 상태에 따라 Props로 전달받은 컴포넌트를 반환
     const checkDataForMapping = (MappingComponent: any) => {
         return data !== null
@@ -89,6 +91,14 @@ const Guide = () => {
                   return <MappingComponent key={index} {...element} />;
               })
             : null;
+    };
+
+    const testData = {
+        id: 1,
+        name: "코트야드 메리어트 수원",
+        image:
+            "https://media-cdn.tripadvisor.com/media/photo-m/1280/1b/44/3d/90/exterior.jpg",
+        address: "경기도 수원 영통구 광교호수공원로 320",
     };
 
     return (
@@ -104,8 +114,9 @@ const Guide = () => {
             </CSSTransition>
 
             <CSSTransition in={state} classNames="slide-left" timeout={1500}>
-                <div className="guide__card">
-                    {checkDataForMapping(GuideCard)}
+                <div className="guide__cards">
+                    <GuideCard {...testData} />
+                    {/* {checkDataForMapping(GuideCard)} */}
                 </div>
             </CSSTransition>
         </div>
