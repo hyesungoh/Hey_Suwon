@@ -1,3 +1,5 @@
+@import "../../Variables";
+
 .guide {
     width: 100vw;
     height: 100vh;
@@ -5,25 +7,33 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
+
+    .scrollbar_deleter {
+        margin-left: -17px;
+        overflow: hidden;
+    }
+
     .guide__slidebar {
+        position: relative;
         width: 35vw;
         height: 100vh;
+
+        // scrollbar-width: none;
+        // 스크롤바 넓이가 안되는 브라우저를 위해
+        right: -17px;
+        overflow-y: scroll;
 
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: flex-start;
 
-        position: relative;
-        overflow-y: scroll;
-        overflow-x: visible;
-
         .slidebar__base {
             position: absolute;
             top: 0;
             left: 0;
             width: 25vw;
-            height: 150vh;
+            height: 1200px;
             background-color: rgba(145, 189, 217, 0.5);
             display: flex;
             flex-direction: column;
@@ -45,27 +55,45 @@
     position: relative;
     width: 30vw;
     height: 100px;
-    padding: 0px 20px;
+    z-index: 1;
+
+    &:after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            to right,
+            rgba(122, 159, 191, 1),
+            rgba(122, 159, 191, 0)
+        );
+        z-index: 2;
+        transition: opacity $guide_scrollbar_animation_time;
+        opacity: 0;
+    }
 
     .slide__element__name {
         all: unset;
         position: absolute;
         top: 50%;
-        left: 30px;
+        left: 20px;
         transform: translateY(-50%);
         width: 30vw;
-        font-size: 20px;
+        z-index: 3;
+        font-size: 18px;
+        opacity: 0.8;
+        transition: all $guide_scrollbar_animation_time;
     }
 }
 
 .silde__select {
-    background: linear-gradient(
-        to right,
-        rgba(122, 159, 191, 1),
-        rgba(122, 159, 191, 0)
-    );
+    &:after {
+        content: "";
+        opacity: 1;
+    }
 
     .slide__element__name {
-        font-size: 24px;
+        font-size: 22px;
+        opacity: 1;
     }
 }

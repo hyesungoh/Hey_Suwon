@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import { CSSTransition } from "react-transition-group";
-import { useSpring, animated, interpolate } from "react-spring";
 
 import GuideCard from "../../components/GuideCard/GuideCard";
 import * as config from "../../config";
@@ -38,24 +37,31 @@ const Guide = () => {
     const [data, setData] = useState<any>(null);
     const fetchUrl: string = useCurrentUrlToFetchUrl();
 
-    const [scrollValue, setScrollValue]: any = useSpring(() => {
-        return { xy: [0, 0] };
-    });
-    const onScroll2 = useCallback(
-        (e) => setScrollValue({ st: e.target.scrollTop / 30 }),
-        []
-    );
-
-    const onScroll = useCallback((e) => {
-        console.log(e.target.scrollTop);
-        setScrollValue({ st: e.target.scrollTop });
-    }, []);
+    const scrollElement = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
         setState(true);
         fetchData(fetchUrl).then((data) => {
             setData(data.data);
         });
+    }, []);
+
+    const checkCurrentElement = (index: number) => {
+        const ELEMENT_SIZE: number = 5;
+        scrollElement.current?.children[index].classList.add("silde__select");
+        for (let i = 0; i < ELEMENT_SIZE; i++) {
+            if (index !== i) {
+                scrollElement.current?.children[i].classList.remove(
+                    "silde__select"
+                );
+            }
+        }
+    };
+
+    const onScroll = useCallback((e) => {
+        const currentScroll: number = e.target.scrollTop;
+        const currentElement: number = Math.floor(currentScroll / 100);
+        checkCurrentElement(currentElement);
     }, []);
 
     const checkDataForMapping = (MappingComponent: any) => {
@@ -69,9 +75,11 @@ const Guide = () => {
     return (
         <div className="guide">
             <CSSTransition in={state} classNames="slide-right" timeout={1500}>
-                <div className="guide__slidebar" onScroll={onScroll}>
-                    <div className="slidebar__base">
-                        {checkDataForMapping(SlideElement)}
+                <div className="scrollbar_deleter">
+                    <div className="guide__slidebar" onScroll={onScroll}>
+                        <div className="slidebar__base" ref={scrollElement}>
+                            {checkDataForMapping(SlideElement)}
+                        </div>
                     </div>
                 </div>
             </CSSTransition>
