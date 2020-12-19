@@ -39,10 +39,18 @@ const Guide = () => {
     const fetchUrl: string = useCurrentUrlToFetchUrl();
 
     const [scrollValue, setScrollValue]: any = useSpring(() => {
-        return {xy: [0, 0]}
+        return { xy: [0, 0] };
     });
-    const onScroll = useCallback(e => setScrollValue({ st: e.target.scrollTop / 30 }), [])
-    
+    const onScroll2 = useCallback(
+        (e) => setScrollValue({ st: e.target.scrollTop / 30 }),
+        []
+    );
+
+    const onScroll = useCallback((e) => {
+        console.log(e.target.scrollTop);
+        setScrollValue({ st: e.target.scrollTop });
+    }, []);
+
     useEffect(() => {
         setState(true);
         fetchData(fetchUrl).then((data) => {
@@ -61,7 +69,7 @@ const Guide = () => {
     return (
         <div className="guide">
             <CSSTransition in={state} classNames="slide-right" timeout={1500}>
-                <div className="guide__slidebar">
+                <div className="guide__slidebar" onScroll={onScroll}>
                     <div className="slidebar__base">
                         {checkDataForMapping(SlideElement)}
                     </div>
