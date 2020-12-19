@@ -4,6 +4,7 @@ import { CSSTransition } from "react-transition-group";
 import "./Main.scss";
 
 const Main = () => {
+    // componentDidMount시 값을 변환하여 CSSTransition에 사용
     const [state, setState] = useState<boolean>(false);
 
     useEffect(() => {

@@ -57,6 +57,8 @@
     height: 100px;
     z-index: 1;
 
+    // 그라디언트를 이용한 배경은 트랜지션이 먹질 않아
+    // after을 이용하여 객체를 만든 후 해당 객체의 투명도를 조절
     &:after {
         content: "";
         position: absolute;
