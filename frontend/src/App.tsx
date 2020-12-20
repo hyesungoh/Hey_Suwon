@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch, withRouter } from "react-router-dom";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
-import * as config from "./config";
 import Navigation from "./components/Navigation/Navigation";
 import Weather from "./components/Weather/Weather";
 import Guide from "./pages/Guide/Guide";
@@ -24,15 +23,27 @@ const Router = withRouter(({ location }) => (
     </TransitionGroup>
 ));
 
-function App() {
-    // KAKAO MAP API를 불러오는 script 태그를 헤드에 추가
-    useEffect(()=> {
-        const mapScript: any = document.createElement("script");
-        mapScript.async = true;
-        mapScript.src = config.MAP_API_URL_KEY;
-        document.head.appendChild(mapScript);
-    }, []);
+declare global {
+    interface Window {
+        kakao: any;
+    }
+}
+const setKakaoMap = () => {
+    document.write(`<script
+    type="text/javascript"
+    src="//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=${process.env.REACT_APP_KAKAO_MAP_KEY}"
+></script>`);
+};
 
+const setKakaoMapToScript = () => {
+    const script = document.createElement("script");
+    script.src =
+        `http://dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.REACT_APP_KAKAO_MAP_KEY}`;
+    document.head.appendChild(script);
+};
+
+function App() {
+    useEffect(() => {setKakaoMapToScript();}, []);
     return (
         <div className="app">
             <div className="bg"></div>

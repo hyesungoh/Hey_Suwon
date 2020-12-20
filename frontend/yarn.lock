@@ -1770,6 +1770,13 @@
   dependencies:
     "@babel/types" "^7.3.0"
 
+"@types/dotenv@^8.2.0":
+  "integrity" "sha512-ylSC9GhfRH7m1EUXBXofhgx4lUWmFeQDINW5oLuS+gxWdfUeW4zJdeVTYVkexEW+e2VUvlZR2kGnGGipAWR7kw=="
+  "resolved" "https://registry.npmjs.org/@types/dotenv/-/dotenv-8.2.0.tgz"
+  "version" "8.2.0"
+  dependencies:
+    "dotenv" "*"
+
 "@types/eslint@^7.2.4":
   "integrity" "sha512-Dc6ar9x16BdaR3NSxSF7T4IjL9gxxViJq8RmFd+2UAyA+K6ck2W+gUwfgpG/y9TPyUuBL35109bbULpEynvltA=="
   "resolved" "https://registry.yarnpkg.com/@types/eslint/-/eslint-7.2.5.tgz"
@@ -4503,7 +4510,7 @@
   "resolved" "https://registry.yarnpkg.com/dotenv-expand/-/dotenv-expand-5.1.0.tgz"
   "version" "5.1.0"
 
-"dotenv@8.2.0":
+"dotenv@*", "dotenv@^8.2.0":
   "integrity" "sha512-8sJ78ElpbDJBHNeBzUbUVLsqKdccaa/BXF1uPTw3GrvQTBgrQrtObr2mUrE38vzYd8cEv+m/JBfDLioYcfXoaw=="
   "resolved" "https://registry.yarnpkg.com/dotenv/-/dotenv-8.2.0.tgz"
   "version" "8.2.0"
