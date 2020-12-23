@@ -1,5 +1,6 @@
-import React, { useEffect, useRef } from "react";
-import axios from "axios";
+import React, { useState, useEffect, useRef } from "react";
+import { useGoogleLoader } from "../../App";
+
 import "./GuideCard.scss";
 
 interface GuideProps {
@@ -9,25 +10,25 @@ interface GuideProps {
     summary?: string;
 }
 
-const {kakao}: any = window;
-
 export const getScrollPosition = (sp: any) => {
     console.log(sp);
 };
 
 const GuideCard = (props: GuideProps) => {
     const { name, image, address } = props;
-    const mapArea = useRef<any>();
+    const mapArea = useRef<any>(null);
+    const loader = useGoogleLoader();
 
     useEffect(() => {
-        console.log(window.localStorage);
-        const container: any = document.getElementById("guidecard__map");
-        const options: any = {
-            center: new kakao.maps.LatLng(37.506502, 127.053617),
-            level: 3,
-        };
-
-        const mapz: any = new kakao.maps.Map(container, options);
+        loader.load().then(() => {
+            const map = new google.maps.Map(
+                mapArea.current as HTMLElement,
+                {
+                    center: { lat: -34.397, lng: 150.644 },
+                    zoom: 12,
+                }
+            );
+        });
     }, []);
 
     return (

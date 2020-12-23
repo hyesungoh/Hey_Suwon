@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch, withRouter } from "react-router-dom";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { Loader } from "@googlemaps/js-api-loader";
+import * as config from "./config";
 
 import Navigation from "./components/Navigation/Navigation";
 import Weather from "./components/Weather/Weather";
@@ -23,27 +25,16 @@ const Router = withRouter(({ location }) => (
     </TransitionGroup>
 ));
 
-declare global {
-    interface Window {
-        kakao: any;
-    }
-}
-const setKakaoMap = () => {
-    document.write(`<script
-    type="text/javascript"
-    src="//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=${process.env.REACT_APP_KAKAO_MAP_KEY}"
-></script>`);
-};
+export const useGoogleLoader = () => {
+    const loader = new Loader({
+        apiKey: config.GOOGLE_MAP_API_KEY,
+        mapIds: config.GOOLGE_MAP_STYLE_KEY,
+    });
 
-const setKakaoMapToScript = () => {
-    const script = document.createElement("script");
-    script.src =
-        `http://dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.REACT_APP_KAKAO_MAP_KEY}`;
-    document.head.appendChild(script);
+    return loader;
 };
 
 function App() {
-    useEffect(() => {setKakaoMapToScript();}, []);
     return (
         <div className="app">
             <div className="bg"></div>
