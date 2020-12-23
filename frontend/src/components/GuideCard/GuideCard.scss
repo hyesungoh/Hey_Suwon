@@ -12,28 +12,36 @@
         position: relative;
         width: 100%;
         height: 66%;
-        background-color: red;
+        background-color: $base_white_color;
         overflow: hidden;
         object-fit: contain;
 
         img {
-            position: relative;
+            position: absolute;
             width: 100%;
             height: 100%;
+            transform: translateX(-100%);
+            transition: transform 500ms;
         }
 
         .guidecard__map {
-            position: relative;
-            width: 100%;
-            height: 100%;
+            position: absolute;
+            min-width: 100%;
+            min-height: 100%;
+            transform: translateX(100%);
+            transition: transform 500ms;
+
+        }
+
+        .selected {
+            transform: translateX(0);
         }
     }
-
 
     .guidecard_info {
         width: 100%;
         height: 34%;
-        
+
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -43,5 +51,36 @@
         * {
             text-shadow: $base_shadow_setting;
         }
+    }
+}
+
+.guidecard__hidden {
+    transform: translateX(-100px);
+}
+
+
+.guidecard__button {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+    span {
+        width: 14px;
+        height: 6px;
+        margin: 10px 4px;
+        border-radius: 15px;
+        background-color: $base_white_color;
+        opacity: 0.4;
+        transition: transform 500ms, opacity 500ms;
+        z-index: 10;
+    }
+
+    .selected {
+        transform: scale(1.2);
+        opacity: 1;
     }
 }

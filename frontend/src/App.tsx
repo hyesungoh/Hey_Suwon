@@ -30,7 +30,7 @@ const Router = withRouter(({ location }) => (
 export const useGoogleLoader = () => {
     const loader = new Loader({
         apiKey: config.GOOGLE_MAP_API_KEY,
-        mapIds: config.GOOLGE_MAP_STYLE_KEY,
+        mapIds: [config.GOOLGE_MAP_STYLE_KEY],
     });
 
     return loader;
@@ -43,7 +43,6 @@ export const useGeocode = (addr: string): any => {
 
     const data = Geocode.fromAddress(addr).then(
         (response) => {
-            // const { lat, lng } = response.results[0].geometry.location;
             return response;
         },
         (error) => {
