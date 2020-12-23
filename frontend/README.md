@@ -72,3 +72,8 @@ ypeError: Cannot read property 'maps' of undefined
     ```
 
     - window를 로그를 찍어보면 안에 kakao 오브젝트가 있으나 window.kakao만을 로그로 찍어보면 undefined가 찍힘 ..
+
+
+#### google map api
+
+- kakao api script 태그를 index.html에 작성하여 사용하면 해당 스크립트가 loaded 확인 > 

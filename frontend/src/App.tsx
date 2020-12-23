@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch, withRouter } from "react-router-dom";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { Loader } from "@googlemaps/js-api-loader";
+import Geocode from "react-geocode";
+
 import * as config from "./config";
 
 import Navigation from "./components/Navigation/Navigation";
@@ -32,6 +34,23 @@ export const useGoogleLoader = () => {
     });
 
     return loader;
+};
+
+export const useGeocode = (addr: string): any => {
+    Geocode.setApiKey(config.GOOGLE_MAP_API_KEY);
+    Geocode.setLanguage("kr");
+    Geocode.enableDebug();
+
+    const data = Geocode.fromAddress(addr).then(
+        (response) => {
+            // const { lat, lng } = response.results[0].geometry.location;
+            return response;
+        },
+        (error) => {
+            return error;
+        }
+    );
+    return data;
 };
 
 function App() {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useGoogleLoader } from "../../App";
+import { useGeocode, useGoogleLoader } from "../../App";
 
 import "./GuideCard.scss";
 
@@ -16,20 +16,34 @@ export const getScrollPosition = (sp: any) => {
 
 const GuideCard = (props: GuideProps) => {
     const { name, image, address } = props;
+    const [coordi, setCoordi] = useState<any>();
+
     const mapArea = useRef<any>(null);
     const loader = useGoogleLoader();
+    const coordinate: any = useGeocode(address + name);
 
     useEffect(() => {
-        loader.load().then(() => {
-            const map = new google.maps.Map(
-                mapArea.current as HTMLElement,
-                {
-                    center: { lat: -34.397, lng: 150.644 },
-                    zoom: 12,
-                }
-            );
-        });
-    }, []);
+        if (coordi === undefined) {
+            coordinate.then((res: any) => {
+                const { lat, lng }: any = res.results[0].geometry.location;
+                setCoordi({ lat, lng });
+            });
+        } else {
+            loader.load().then(() => {
+                const map = new google.maps.Map(
+                    mapArea.current as HTMLElement,
+                    {
+                        center: coordi,
+                        zoom: 15,
+                    }
+                );
+                const marker = new google.maps.Marker({
+                    position: coordi,
+                    map: map,
+                });
+            });
+        }
+    }, [coordi]);
 
     return (
         <div className="guidecard">
