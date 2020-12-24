@@ -59,6 +59,7 @@ const Guide = () => {
     // 스크롤 시 scrollTop을 기준으로 자식 객체를 선택
     const onScroll = useCallback((e) => {
         const currentScroll: number = e.target.scrollTop;
+        console.log(currentScroll);
         const currentElement: number = Math.floor(currentScroll / 100);
         checkCurrentElement(currentElement);
         getScrollPosition(currentElement);
