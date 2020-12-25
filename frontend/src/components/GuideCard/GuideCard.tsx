@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import {CSSTransition} from "react-transition-group";
 import { useGeocode, useGoogleLoader } from "../../App";
 
 import "./GuideCard.scss";
@@ -57,7 +58,11 @@ const GuideCard = (props: GuideProps) => {
                 const marker = new google.maps.Marker({
                     position: coordi,
                     map,
+                    title: name,
                 });
+
+                marker.setZIndex(1000);
+                console.log(marker);
             });
         }
         // dependency로 state값을 넣어 값 할당 시 재호출되도록 작성

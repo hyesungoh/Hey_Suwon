@@ -9,9 +9,8 @@
     box-shadow: $base_shadow_setting;
 
     position: absolute;
-    transform: translateY(100%);
+    transform: translate(200%, 200%);
     transition: transform 500ms;
-
 
     .guidecard__data {
         position: relative;
@@ -36,6 +35,9 @@
             transform: translateX(100%);
             transition: transform 500ms;
 
+            * {
+                overflow: visible !important;
+            }
         }
 
         .selected {
@@ -60,11 +62,10 @@
 }
 
 
-
 .guidecard__selected {
-    transform: translateX(0);
-}
 
+    transform: translate(0, 0);
+}
 
 .guidecard__button {
     position: absolute;
