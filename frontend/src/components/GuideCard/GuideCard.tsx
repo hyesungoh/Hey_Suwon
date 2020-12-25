@@ -56,8 +56,8 @@ const GuideCard = (props: GuideProps) => {
                     }
                 );
                 const marker = new google.maps.Marker({
-                    map: map,
                     position: coordi,
+                    map,
                 });
             });
         }
@@ -82,7 +82,7 @@ const GuideCard = (props: GuideProps) => {
                     <span ref={btn2}></span>
                 </div>
                 <img ref={imgArea} className="selected" src={image} alt={name} />
-                <div className="guidecard__map" ref={mapArea}></div>
+                <div className="guidecard__map " ref={mapArea}></div>
             </div>
             <div className="guidecard_info">
                 <h1>{name}</h1>
