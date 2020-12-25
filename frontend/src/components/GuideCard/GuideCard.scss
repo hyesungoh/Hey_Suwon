@@ -8,6 +8,11 @@
     height: 420px;
     box-shadow: $base_shadow_setting;
 
+    position: absolute;
+    transform: translateY(100%);
+    transition: transform 500ms;
+
+
     .guidecard__data {
         position: relative;
         width: 100%;
@@ -54,8 +59,10 @@
     }
 }
 
-.guidecard__hidden {
-    transform: translateX(-100px);
+
+
+.guidecard__selected {
+    transform: translateX(0);
 }
 
 

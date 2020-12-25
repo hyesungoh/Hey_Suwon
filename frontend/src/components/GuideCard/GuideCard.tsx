@@ -1,23 +1,22 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useGeocode, useGoogleLoader } from "../../App";
-import * as config from "../../config";
 
 import "./GuideCard.scss";
 
 // Guide에서 받아올 Props, Restaurant시에만 summary가 포함돼어 아래와 같이 작성
 interface GuideProps {
+    id: number;
+    index: number;
     name: string;
     image: string;
     address: string;
     summary?: string;
 }
 
-export const getScrollPosition = (sp: any) => {
-    console.log(sp);
-};
-
 const GuideCard = (props: GuideProps) => {
-    const { name, image, address } = props;
+    const { id, index, name, image, address } = props;
+    const isSelected = id - 1 === index;
+
     // 좌표를 저장할 state
     const [coordi, setCoordi] = useState<any>();
 
@@ -42,7 +41,7 @@ const GuideCard = (props: GuideProps) => {
                 const { lat, lng }: any = res.results[0].geometry.location;
                 setCoordi({ lat, lng });
             });
-        // 좌표를 받아온 후일 시
+            // 좌표를 받아온 후일 시
         } else {
             // google map을 이용하여 지도와 마커 생성
             loader.load().then(() => {
@@ -75,13 +74,18 @@ const GuideCard = (props: GuideProps) => {
     };
 
     return (
-        <div className="guidecard">
+        <div className={`guidecard ${isSelected ? "guidecard__selected" : ""}`}>
             <div className="guidecard__data" onClick={guidecardSwitch}>
                 <div className="guidecard__button">
                     <span className="selected" ref={btn1}></span>
                     <span ref={btn2}></span>
                 </div>
-                <img ref={imgArea} className="selected" src={image} alt={name} />
+                <img
+                    ref={imgArea}
+                    className="selected"
+                    src={image}
+                    alt={name}
+                />
                 <div className="guidecard__map " ref={mapArea}></div>
             </div>
             <div className="guidecard_info">
@@ -92,4 +96,4 @@ const GuideCard = (props: GuideProps) => {
     );
 };
 
-export default GuideCard;
+export default React.memo(GuideCard);

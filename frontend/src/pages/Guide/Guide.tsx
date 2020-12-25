@@ -7,7 +7,6 @@ import GuideCard from "../../components/GuideCard/GuideCard";
 import * as config from "../../config";
 
 import "./Guide.scss";
-import { getScrollPosition } from "../../components/GuideCard/GuideCard";
 
 // 현재 url path를 이용하여 데이터를 호출할 api 주소를 반환
 const useCurrentUrlToFetchUrl = () => {
@@ -31,7 +30,7 @@ interface GuideSlideProps {
 const SlideElement = (props: GuideSlideProps) => {
     // id와 현재 scorll 결과 값인  index를 비교하여 클래스를 부여
     const { id, index, name } = props;
-    const isSelected = (id - 1) === index;
+    const isSelected = id - 1 === index;
     return (
         <div className={`slide__element ${isSelected ? "silde__select" : ""}`}>
             <div className="slide__element__name">
@@ -69,7 +68,7 @@ const Guide = () => {
         const currentScroll: number = e.target.scrollTop;
         console.log(currentScroll);
         const currentElement: number = Math.floor(currentScroll / 100);
-        
+
         // 현재 스크롤 결과를 setState
         setIndex(currentElement);
 
@@ -102,7 +101,13 @@ const Guide = () => {
         // index state값을 props로 사용
         return data !== null
             ? data.map((element: any, index: number) => {
-                  return <MappingComponent key={index} index={currrentIndex} {...element} />;
+                  return (
+                      <MappingComponent
+                          key={index}
+                          index={currrentIndex}
+                          {...element}
+                      />
+                  );
               })
             : null;
     };
@@ -129,8 +134,8 @@ const Guide = () => {
 
             <CSSTransition in={state} classNames="slide-left" timeout={1500}>
                 <div className="guide__cards">
-                    <GuideCard {...testData} />
-                    {/* {checkDataForMapping(GuideCard)} */}
+                    {/* <GuideCard {...testData} /> */}
+                    {checkDataForMapping(GuideCard)}
                 </div>
             </CSSTransition>
         </div>
