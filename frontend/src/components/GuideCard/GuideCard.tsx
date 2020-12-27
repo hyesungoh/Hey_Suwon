@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
-import {CSSTransition} from "react-transition-group";
+import { CSSTransition } from "react-transition-group";
 import { useGeocode, useGoogleLoader } from "../../App";
 
 import "./GuideCard.scss";
 
 // Guide에서 받아올 Props, Restaurant시에만 summary가 포함돼어 아래와 같이 작성
 interface GuideProps {
-    id: number;
+    ownId: number;
     index: number;
     name: string;
     image: string;
@@ -15,8 +15,15 @@ interface GuideProps {
 }
 
 const GuideCard = (props: GuideProps) => {
-    const { id, index, name, image, address } = props;
-    const isSelected = id - 1 === index;
+    const { ownId, index, name, image, address } = props;
+    const [isSelected, setSelected] = useState<boolean>(false);
+    // const isSelected = id - 1 === index;
+
+    useEffect(() => {
+        const currentIndexBoolean = ownId === index;
+        setSelected(currentIndexBoolean);
+        console.log(currentIndexBoolean);
+    }, [index]);
 
     // 좌표를 저장할 state
     const [coordi, setCoordi] = useState<any>();
@@ -60,9 +67,6 @@ const GuideCard = (props: GuideProps) => {
                     map,
                     title: name,
                 });
-
-                marker.setZIndex(1000);
-                console.log(marker);
             });
         }
         // dependency로 state값을 넣어 값 할당 시 재호출되도록 작성
@@ -79,25 +83,31 @@ const GuideCard = (props: GuideProps) => {
     };
 
     return (
-        <div className={`guidecard ${isSelected ? "guidecard__selected" : ""}`}>
-            <div className="guidecard__data" onClick={guidecardSwitch}>
-                <div className="guidecard__button">
-                    <span className="selected" ref={btn1}></span>
-                    <span ref={btn2}></span>
+        <CSSTransition in={isSelected} timeout={1500} classNames="circle">
+            <div
+                className={`guidecard ${
+                    isSelected ? "guidecard__selected" : ""
+                }`}
+            >
+                <div className="guidecard__data" onClick={guidecardSwitch}>
+                    <div className="guidecard__button">
+                        <span className="selected" ref={btn1}></span>
+                        <span ref={btn2}></span>
+                    </div>
+                    <img
+                        ref={imgArea}
+                        className="selected"
+                        src={image}
+                        alt={name}
+                    />
+                    <div className="guidecard__map " ref={mapArea}></div>
                 </div>
-                <img
-                    ref={imgArea}
-                    className="selected"
-                    src={image}
-                    alt={name}
-                />
-                <div className="guidecard__map " ref={mapArea}></div>
+                <div className="guidecard_info">
+                    <h1>{name}</h1>
+                    <span>{address}</span>
+                </div>
             </div>
-            <div className="guidecard_info">
-                <h1>{name}</h1>
-                <span>{address}</span>
-            </div>
-        </div>
+        </CSSTransition>
     );
 };
 

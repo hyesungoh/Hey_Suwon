@@ -21,7 +21,7 @@ const fetchData = async (url: any) => {
 
 // 슬라이드바에 사용될 Props를 선언
 interface GuideSlideProps {
-    id: number;
+    ownId: number;
     index: number;
     name: string;
 }
@@ -29,8 +29,9 @@ interface GuideSlideProps {
 // 슬라이드바 Component
 const SlideElement = (props: GuideSlideProps) => {
     // id와 현재 scorll 결과 값인  index를 비교하여 클래스를 부여
-    const { id, index, name } = props;
-    const isSelected = id - 1 === index;
+    console.log(props);
+    const { ownId, index, name } = props;
+    const isSelected = ownId === index;
     return (
         <div className={`slide__element ${isSelected ? "silde__select" : ""}`}>
             <div className="slide__element__name">
@@ -66,7 +67,6 @@ const Guide = () => {
     // 스크롤 시 scrollTop을 기준으로 자식 객체를 선택
     const onScroll = useCallback((e) => {
         const currentScroll: number = e.target.scrollTop;
-        console.log(currentScroll);
         const currentElement: number = Math.floor(currentScroll / 100);
 
         // 현재 스크롤 결과를 setState
@@ -104,20 +104,13 @@ const Guide = () => {
                   return (
                       <MappingComponent
                           key={index}
+                          ownId={index}
                           index={currrentIndex}
                           {...element}
                       />
                   );
               })
             : null;
-    };
-
-    const testData = {
-        id: 1,
-        name: "코트야드 메리어트 수원",
-        image:
-            "https://media-cdn.tripadvisor.com/media/photo-m/1280/1b/44/3d/90/exterior.jpg",
-        address: "경기도 수원 영통구 광교호수공원로 320",
     };
 
     return (
@@ -134,7 +127,6 @@ const Guide = () => {
 
             <CSSTransition in={state} classNames="slide-left" timeout={1500}>
                 <div className="guide__cards">
-                    {/* <GuideCard {...testData} /> */}
                     {checkDataForMapping(GuideCard)}
                 </div>
             </CSSTransition>
