@@ -18,15 +18,13 @@
 }
 
 .weather__card {
-    $weather_card_height: 90px;
+    $weather_card_height: 80px;
 
     display: flex;
     align-items: center;
-    // backdrop-filter: blur(5px);
-    // box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 
     .weather__icon {
-        width: 80px;
+        width: 70px;
         height: $weather_card_height;
 
         display: flex;
@@ -44,7 +42,7 @@
     }
 
     .weather__info {
-        width: 120px;
+        width: 110px;
         height: $weather_card_height;
 
         display: flex;

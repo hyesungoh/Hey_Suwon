@@ -29,7 +29,6 @@ interface GuideSlideProps {
 // 슬라이드바 Component
 const SlideElement = (props: GuideSlideProps) => {
     // id와 현재 scorll 결과 값인  index를 비교하여 클래스를 부여
-    console.log(props);
     const { ownId, index, name } = props;
     const isSelected = ownId === index;
     return (

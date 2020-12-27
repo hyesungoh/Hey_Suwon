@@ -16,14 +16,12 @@ interface GuideProps {
 
 const GuideCard = (props: GuideProps) => {
     const { ownId, index, name, image, address, summary } = props;
-    console.log(summary);
     const [isSelected, setSelected] = useState<boolean>(false);
     // const isSelected = id - 1 === index;
 
     useEffect(() => {
         const currentIndexBoolean = ownId === index;
         setSelected(currentIndexBoolean);
-        console.log(currentIndexBoolean);
     }, [index]);
 
     // 좌표를 저장할 state
@@ -40,7 +38,7 @@ const GuideCard = (props: GuideProps) => {
 
     // app.tsx에 존재하는 구글 맵 loader와 geocoder
     const loader = useGoogleLoader();
-    const coordinate: any = useGeocode(address + name);
+    const coordinate: any = useGeocode(address);
 
     useEffect(() => {
         // 좌표를 받아오기 전일 시
@@ -50,7 +48,8 @@ const GuideCard = (props: GuideProps) => {
                 const { lat, lng }: any = res.results[0].geometry.location;
                 setCoordi({ lat, lng });
             });
-            // 좌표를 받아온 후일 시
+
+        // 좌표를 받아온 후일 시
         } else {
             // google map을 이용하여 지도와 마커 생성
             loader.load().then(() => {
