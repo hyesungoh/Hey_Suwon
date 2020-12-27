@@ -2,10 +2,10 @@
 
 ###### 수원시 날씨 및 정보
 
-- [Result](..#result)
-- [Develop](..#develop)
-- [Setting](..#setting)
-- [Issue](..#issue)
+- [Result](https://github.com/hyesungoh/Hey_Suwon#result)
+- [Develop](https://github.com/hyesungoh/Hey_Suwon#develop)
+- [Setting](https://github.com/hyesungoh/Hey_Suwon#setting)
+- [Issue](https://github.com/hyesungoh/Hey_Suwon#issue)
 - [lookback](https://github.com/hyesungoh/Hey_Suwon/tree/master/frontend)
 
 ## Result
