@@ -15,7 +15,8 @@ interface GuideProps {
 }
 
 const GuideCard = (props: GuideProps) => {
-    const { ownId, index, name, image, address } = props;
+    const { ownId, index, name, image, address, summary } = props;
+    console.log(summary);
     const [isSelected, setSelected] = useState<boolean>(false);
     // const isSelected = id - 1 === index;
 
@@ -103,7 +104,7 @@ const GuideCard = (props: GuideProps) => {
                     <div className="guidecard__map " ref={mapArea}></div>
                 </div>
                 <div className="guidecard_info">
-                    <h1>{name}</h1>
+                    <h1>{name}<span>{summary}</span></h1>
                     <span>{address}</span>
                 </div>
             </div>
